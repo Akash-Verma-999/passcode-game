@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passcode Guessing Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Passcode Guessing Game</h1>
+            <p class="subtitle">Guess your opponent's 4-digit code!</p>
+        </header>
+
+        <!-- Home Screen -->
+        <section id="home-screen" class="screen active">
+            <div class="card">
+                <h2>Welcome!</h2>
+                <div class="form-group">
+                    <label for="player-name">Your Name</label>
+                    <input type="text" id="player-name" placeholder="Enter your name" maxlength="50">
+                </div>
+                
+                <div class="button-group">
+                    <button id="create-game-btn" class="btn btn-primary">Create New Game</button>
+                    <div class="divider">OR</div>
+                    <div class="form-group">
+                        <label for="game-id-input">Game ID</label>
+                        <input type="text" id="game-id-input" placeholder="Enter game ID to join">
+                    </div>
+                    <button id="join-game-btn" class="btn btn-secondary">Join Game</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lobby Screen -->
+        <section id="lobby-screen" class="screen">
+            <div class="card">
+                <h2>Game Lobby</h2>
+                <div class="game-info">
+                    <p><strong>Game ID:</strong> <span id="display-game-id" class="copyable"></span></p>
+                    <button id="copy-game-id" class="btn btn-small">Copy</button>
+                </div>
+                
+                <div class="players-status">
+                    <div class="player-card">
+                        <h3>Player 1</h3>
+                        <p id="player1-name">-</p>
+                        <span id="player1-status" class="status">Waiting...</span>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="player-card">
+                        <h3>Player 2</h3>
+                        <p id="player2-name">-</p>
+                        <span id="player2-status" class="status">Waiting...</span>
+                    </div>
+                </div>
+
+                <div id="lock-number-section" class="form-group">
+                    <label for="secret-number">Your Secret 4-Digit Number</label>
+                    <input type="text" id="secret-number" placeholder="e.g., 1234" maxlength="4" pattern="\d{4}">
+                    <button id="lock-number-btn" class="btn btn-primary">Lock Number</button>
+                </div>
+
+                <div id="waiting-message" class="hidden">
+                    <div class="loader"></div>
+                    <p>Waiting for opponent to lock their number...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen">
+            <div class="card game-card">
+                <div class="game-header">
+                    <h2>Game On!</h2>
+                    <div id="turn-indicator" class="turn-indicator">Your Turn</div>
+                </div>
+
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-label">Turn</span>
+                        <span id="turn-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Your Guesses</span>
+                        <span id="your-guesses-count" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <div id="guess-section">
+                    <div class="form-group">
+                        <label for="guess-input">Enter Your Guess</label>
+                        <input type="text" id="guess-input" placeholder="4-digit guess" maxlength="4" pattern="\d{4}">
+                        <button id="submit-guess-btn" class="btn btn-primary">Submit Guess</button>
+                    </div>
+                </div>
+
+                <div id="guess-history">
+                    <h3>Guess History</h3>
+                    <div class="history-legend">
+                        <span><strong>CD</strong> = Correct Digits</span>
+                        <span><strong>CP</strong> = Correct Positions</span>
+                    </div>
+                    <div id="history-list" class="history-list">
+                        <!-- Guesses will be added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Screen -->
+        <section id="result-screen" class="screen">
+            <div class="card result-card">
+                <div id="result-content">
+                    <h2 id="result-title">Game Over!</h2>
+                    <div id="winner-display" class="winner-display"></div>
+                    <p id="result-message"></p>
+                </div>
+                
+                <div class="final-stats">
+                    <h3>Final Stats</h3>
+                    <p>Total Turns: <span id="final-turns">0</span></p>
+                </div>
+
+                <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+            </div>
+        </section>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
